@@ -1,6 +1,8 @@
 from random import randint
+from time import sleep
 from uwu import generateUwU
 from jimmytoken import giveToken
+import os
 
 import discord
 
@@ -20,8 +22,19 @@ async def on_message(message):
         await message.channel.send('fuck you ' + str(message.author)[:-5])
     elif message.content.startswith('%uwu'):
         await message.channel.send(generateUwU(message.content[5:]))
-    elif randint(1, 100) == 69:
-        await message.channel.send('eyy wheres the gabbagool')
+    elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
+        os.system("python generate_unconditional_samples.py --model_name wadam --nsamples 1 --top_k 40 >> temp.txt")
+        sleep(30)
+        f = open("temp.txt")
+        first = False
+        bigstring = ""
+        for line in f:
+            if first:
+                bigstring += line
+            first = True
+        f.close()
+        os.system("rm temp.txt")
+        await message.channel.send(first)
 
 
 client.run(giveToken())
