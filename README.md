@@ -1,0 +1,2 @@
+# JimmysMomBot
+a discord bot
