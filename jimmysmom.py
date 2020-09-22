@@ -3,6 +3,7 @@ from time import sleep
 from uwu import generateUwU
 from jimmytoken import giveToken
 import os
+import re
 
 import discord
 
@@ -27,7 +28,7 @@ async def on_message(message):
     elif message.content.startswith('%uwu'):
         await message.channel.send(generateUwU(message.content[5:]))
     elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
-        os.system("cd /home/jimmysmom/JimmysMomBot/gpt2 && python3 sequence_generator.py --seq-len 2048 --context yo >> ../temp.txt")
+        os.system('cd /home/jimmysmom/JimmysMomBot/gpt2 && python3 sequence_generator.py --seq-len 2048 --context "' + (re.sub(r'^%rand','', message.content)) + '" >> ../temp.txt')
         sleep(.2)
         f = open("temp.txt")
         first = False
@@ -38,7 +39,7 @@ async def on_message(message):
             first = True
         f.close()
         os.system("rm temp.txt")
-        await message.channel.send(bigstring)
+        await message.channel.send(re.sub(r'^Generated seq by model:-','', bigstring))
 
 
 client.run(giveToken())
