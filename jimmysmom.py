@@ -34,7 +34,7 @@ async def on_message(message):
             first = True
         f.close()
         os.system("rm temp.txt")
-        await message.channel.send(bigstring)
+        await message.channel.send(bigstring.lstrip('Generated seq by model:-'))
 
 
 client.run(giveToken())
