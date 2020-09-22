@@ -23,7 +23,8 @@ async def on_message(message):
     elif message.content.startswith('%uwu'):
         await message.channel.send(generateUwU(message.content[5:]))
     elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
-        os.system("python3 /home/jimmysmom/JimmysMomBot/gpt2/sequence_generator.py --seq-len 2048 --context hey >> temp.txt")
+        os.system("cd /home/jimmysmom/JimmysMomBot/gpt2")
+        os.system("python3 sequence_generator.py --seq-len 2048 --context hey >> ../temp.txt")
         sleep(10)
         f = open("temp.txt")
         first = False
