@@ -13,17 +13,21 @@ client = discord.Client()
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
+@client.event
+async def on_message_delete():
+    await message.channel.send("which one of you goobers deleted a message in my house")
+
 
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('%continue'):
-        await message.channel.send('fuck you ' + str(message.author)[:-5])
+    if message.content.startswith('%gm'):
+        await message.channel.send('good morning ' + str(message.author.nick) + "!")
     elif message.content.startswith('%uwu'):
         await message.channel.send(generateUwU(message.content[5:]))
     elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
-        os.system("cd /home/jimmysmom/JimmysMomBot/gpt2 && python3 sequence_generator.py --seq-len 2048 --context hey >> ../temp.txt")
+        os.system("cd /home/jimmysmom/JimmysMomBot/gpt2 && python3 sequence_generator.py --seq-len 2048 --context yo >> ../temp.txt")
         sleep(.2)
         f = open("temp.txt")
         first = False
