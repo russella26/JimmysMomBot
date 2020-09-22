@@ -3,6 +3,7 @@ from time import sleep
 from uwu import generateUwU
 from jimmytoken import giveToken
 import os
+import re
 
 import discord
 
@@ -34,7 +35,7 @@ async def on_message(message):
             first = True
         f.close()
         os.system("rm temp.txt")
-        await message.channel.send(bigstring.lstrip('Generated seq by model:-'))
+        await message.channel.send(re.sub(r'^Generated seq by model:-','', s))
 
 
 client.run(giveToken())
