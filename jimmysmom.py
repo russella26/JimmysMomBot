@@ -23,8 +23,8 @@ async def on_message(message):
     elif message.content.startswith('%uwu'):
         await message.channel.send(generateUwU(message.content[5:]))
     elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
-        os.system("python3 gpt2/src/generate_unconditional_samples.py --model_name wadam --nsamples 1 --top_k 40 >> temp.txt")
-        sleep(30)
+        os.system("python3 gpt2/sequence_generator.py --seq-len 16384 --context hey >> temp.txt")
+        sleep(10)
         f = open("temp.txt")
         first = False
         bigstring = ""
