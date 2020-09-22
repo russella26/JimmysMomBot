@@ -34,7 +34,7 @@ async def on_message(message):
             first = True
         f.close()
         os.system("rm temp.txt")
-        await message.channel.send(first)
+        await message.channel.send(bigstring)
 
 
 client.run(giveToken())
