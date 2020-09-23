@@ -16,7 +16,7 @@ async def on_ready():
 
 # do we need this? idk (print on message delete)
 @client.event
-async def on_message_delete():
+async def on_message_delete(message):
     await message.channel.send("which one of you goobers deleted a message in my house")
 
 # message based bot commands
