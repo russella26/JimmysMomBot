@@ -32,7 +32,10 @@ async def on_message(message):
         await message.channel.send((uwufunc.uwufunc(message.content)))
     # ai text generator function
     elif randint(1, 100) == 69 or message.content.startswith('%rand'):
-        await message.channel.send(aitext.aitext(message.content))
+        aitxt = ""
+        async with message.channel.typing():
+            aitxt = aitext.aitext(message.content)
+        await message.channel.send(aitxt)
 
 
 client.run(giveToken())
