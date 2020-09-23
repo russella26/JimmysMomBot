@@ -1,45 +1,38 @@
 from random import randint
-from time import sleep
-from uwu import generateUwU
 from jimmytoken import giveToken
-import os
-import re
-
 import discord
+##function imports
+import gm
+import uwufunc
+import aitext
 
+# assignment for ease of writing
 client = discord.Client()
 
-
+# print when the bot has sucessfully logged in. 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
+# do we need this? idk (print on message delete)
 @client.event
 async def on_message_delete():
     await message.channel.send("which one of you goobers deleted a message in my house")
 
-
+# message based bot commands
 @client.event
 async def on_message(message):
     if message.author == client.user:
         return
+    # good morning function
     if message.content.startswith('%gm'):
-        await message.channel.send('good morning ' + str(message.author.nick) + "!")
+        await message.channel.send(gm.gm(message.author.nick))
+    # uwu function
     elif message.content.startswith('%uwu'):
-        await message.channel.send(generateUwU(message.content[5:]))
+        await message.channel.send((uwufunc.uwufunc(message.content))
+    # ai text generator function
     elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
-        os.system('cd /home/jimmysmom/JimmysMomBot/gpt2 && python3 sequence_generator.py --seq-len 2048 --context "' + (re.sub(r'^%rand','', message.content)) + '" >> ../temp.txt')
-        sleep(.2)
-        f = open("temp.txt")
-        first = False
-        bigstring = ""
-        for line in f:
-            if first:
-                bigstring += line
-            first = True
-        f.close()
-        os.system("rm temp.txt")
-        await message.channel.send(re.sub(r'^Generated seq by model:-','', bigstring))
+        await message.channel.send(aitext.aitext(message.content))
 
 
 client.run(giveToken())
