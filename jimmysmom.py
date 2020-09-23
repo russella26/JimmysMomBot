@@ -29,9 +29,9 @@ async def on_message(message):
         await message.channel.send(gm.gm(message.author.nick))
     # uwu function
     elif message.content.startswith('%uwu'):
-        await message.channel.send((uwufunc.uwufunc(message.content))
+        await message.channel.send((uwufunc.uwufunc(message.content)))
     # ai text generator function
-    elif (randint(1, 100) == 69) or message.content.startswith('%rand'):
+    elif randint(1, 100) == 69 or message.content.startswith('%rand'):
         await message.channel.send(aitext.aitext(message.content))
 
 
