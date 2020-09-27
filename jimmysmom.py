@@ -5,6 +5,7 @@ import discord
 import gm
 import uwufunc
 import aitext
+import contextaware
 
 # assignment for ease of writing
 client = discord.Client()
@@ -30,10 +31,15 @@ async def on_message(message):
     # uwu function
     elif message.content.startswith('%uwu'):
         await message.channel.send((uwufunc.uwufunc(message.content)))
-    # ai text generator function
+    # random ai text generator function
     elif randint(1, 100) == 69 or message.content.startswith('%rand'):
         async with message.channel.typing():
             aigen = aitext.aitext(message.content)
+        await message.channel.send(aigen)
+    # with context ai text generator function
+    elif message.content.startswith('%con') or message.content.startswith('%context'):
+        async with message.channel.typing():
+            aigen = contextaware.contextaware(message.content)
         await message.channel.send(aigen)
 
 
