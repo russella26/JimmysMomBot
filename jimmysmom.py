@@ -37,7 +37,7 @@ async def on_message(message):
             aigen = aitext.aitext(message.content)
         await message.channel.send(aigen)
     # with context ai text generator function
-    elif message.content.startswith('%con') or message.content.startswith('%context'):
+    elif message.content.startswith('%con'):
         async with message.channel.typing():
             aigen = contextaware.contextaware(message.content)
         await message.channel.send(aigen)
