@@ -12,4 +12,4 @@ def aitext(message):
         first = True
     f.close()
     os.system("rm temp.txt")
-    return (bigstring))
+    return (bigstring)
