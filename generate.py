@@ -1,10 +1,19 @@
 import gpt_2_simple as gpt2
 
+global sess
+sess = gpt2.start_tf_sess()
+gpt2.load_gpt2(sess)
+global phrases
+phrases = []
+
 def aitext(hello):
-    sess = gpt2.start_tf_sess()
-    gpt2.load_gpt2(sess)
-    single_text = gpt2.generate(sess, return_as_list=True)[0]
-    retval = single_text.splitlines()
-    while (retval[0] == "<|endoftext|>"):
-        retval = retval[1:]
-    return retval[0]
+    global phrases
+    global sess
+    if not phrases:
+        """gpt2.load_gpt2(sess)"""
+        single_text = gpt2.generate(sess, return_as_list=True)[0]
+        phrases = single_text.splitlines()
+        phrases[:] = [x for x in phrases if x != "<|endoftext|>"] 
+    retval = phrases[0]
+    phrases.pop(0)
+    return retval
