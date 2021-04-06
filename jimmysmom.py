@@ -4,7 +4,7 @@ import discord
 ##function imports
 import gm
 import uwufunc
-import aitext
+import generate
 import contextaware
 
 # assignment for ease of writing
@@ -34,7 +34,7 @@ async def on_message(message):
     # random ai text generator function
     elif randint(1, 100) == 69 or message.content.startswith('%rand'):
         async with message.channel.typing():
-            aigen = aitext.aitext(message.content)
+            aigen = generate.aitext(message.content)
         await message.channel.send(aigen)
     # with context ai text generator function
     elif message.content.startswith('%con'):
