@@ -5,6 +5,6 @@ def aitext(hello):
     gpt2.load_gpt2(sess)
     single_text = gpt2.generate(sess, return_as_list=True)[0]
     retval = single_text.splitlines()
-    while (retval.head == "<|endoftext|>"):
-        retval = retval.tail
+    while (retval[0] == "<|endoftext|>"):
+        retval = retval[1:]
     return retval[0]
