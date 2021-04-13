@@ -16,9 +16,11 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
 # do we need this? idk (print on message delete)
-@client.event
-async def on_message_delete(message):
-    await message.channel.send("which one of you goobers deleted a message in my house")
+#@client.event
+#async def on_message_delete(message):
+#    await message.channel.send("which one of you goobers deleted a message in my house")
+# wow this was really dumb
+
 
 # message based bot commands
 @client.event
